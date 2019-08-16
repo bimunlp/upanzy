@@ -1,1165 +1,219 @@
-
-<!DOCTYPE html>
-<html lang="zh-cn,en,ja,default">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="机器学习">
-    <title>机器学习</title>
-    <meta name="author" content="天津亦友拾光文化传播有限公司">
-    
-        <meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习,">
-    
-    
-        <link rel="icon" href="http://cdn.yiyouls.com/favicon.ico">
-    
-    
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"Website","@id":"http://yoursite.com","author":{"@type":"Person","name":"天津亦友拾光文化传播有限公司","sameAs":["https://github.com/yiyouls","http://stackoverflow.com/users/10926004/yiyouls","https://twitter.com/hanhaishiyi","https://facebook.com/yiyouls","https://plus.google.com/u/0/108244569432480563366","https://www.linkedin.com/in/yiyouls","https://www.zhihu.com/people/yiyouls-66/activities","https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008","http://space.bilibili.com/275230151?","hanhaishiyi@gmail.com"],"image":"http://cdn.yiyouls.com/profile.png"},"name":"机器学习","description":"人工智能领域前沿","url":"http://yoursite.com","keywords":"deep learning, neural network, mechine learning, ANN, AI, 深度学习, 机器学习"}</script>
-    <meta name="description" content="人工智能领域前沿">
-<meta name="keywords" content="deep learning,neural network,mechine learning,ANN,AI,深度学习,机器学习">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="机器学习">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="机器学习">
-<meta property="og:description" content="人工智能领域前沿">
-<meta property="og:locale" content="zh-cn">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习">
-<meta name="twitter:description" content="人工智能领域前沿">
-<meta name="twitter:creator" content="@hanhaishiyi">
-    
-        <link rel="publisher" href="https://plus.google.com/108244569432480563366"/>
-    
-    
-        
-    
-    
-        <meta property="og:image" content="http://cdn.yiyouls.com/profile.png"/>
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
-    <!--STYLES END-->
-    
-
-    
-</head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
+---
+title: "Mundana Free Jekyll Theme"
+layout: default
+pagination:
+    enabled: true
+description: "A great Jekyll theme developed by Sal @wowthemesnet."
+---
 
 
+<div class="container">
     
-        
-            
-        
+{% if page.url == "/" %}
     
-
-<header id="header" data-behavior="1">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">机器学习</a>
+    
+    
+<!-- Begin post excerpts, let's highlight the first 4 posts on top -->
+<div class="row remove-site-content-margin">
+    
+    <!-- latest post -->
+    {% assign latest_post = site.posts[0] %}
+    <div class="col-md-6">
+    <div class="card border-0 mb-4 box-shadow">   
+    <a href="{{site.baseurl}}{{latest_post.url}}">
+    <div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>     
+    </a>
+    <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
+    <h2 class="h4 font-weight-bold">
+    <a class="text-dark" href="{{site.baseurl}}{{latest_post.url}}">{{ latest_post.title }}</a>
+    </h2>
+    <p class="excerpt">
+        {{ latest_post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+    </p>
+    <div>
+        <small class="d-block text-muted">
+            In <span class="catlist">
+                {% for category in latest_post.categories %}
+                <a class="text-capitalize text-muted smoothscroll" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category }}</a><span class="sep">, </span>
+                {% endfor %}
+                </span>                   
+        </small>
+        <small class="text-muted">
+            {{ latest_post.date | date: '%b %d, %Y' }}
+        </small>
+    </div>
+    </div>
+    </div>
     </div>
     
+    <div class="col-md-6">
         
-            <a class="header-right-picture " href="#about">
-        
-        
-            <img class="header-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-
-        
-    
-
-<nav id="sidebar" data-behavior="1">
-    <div class="sidebar-container">
-        
-            <div class="sidebar-profile">
-                <a href="/#about">
-                    <img class="sidebar-profile-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
+        <!-- second latest post -->
+        {%- assign second_post = site.posts[1] -%}        
+        <div class="mb-3 d-flex align-items-center">                
+                {% if second_post.image %}
+                <div class="col-md-4">
+                <a href="{{site.baseurl}}{{second_post.url}}">
+                 <img class="w-100" src="{% if second_post.image contains "://" %}{{ second_post.image }}{% else %}{{ second_post.image | absolute_url }}{% endif %}" alt="{{ second_post.title }}">
                 </a>
-                <h4 class="sidebar-profile-name">天津亦友拾光文化传播有限公司</h4>
-                
-                    <h5 class="sidebar-profile-bio"><p>浙江大学在读</p>
-</h5>
-                
+                </div>
+                {% endif %}                
+                <div>
+                    <h2 class="mb-2 h6 font-weight-bold">
+                    <a class="text-dark" href="{{site.baseurl}}{{second_post.url}}">{{ second_post.title }}</a>
+                    </h2>
+                    <small class="d-block text-muted">
+                        In <span class="catlist">
+                        {% for category in second_post.categories %}
+                        <a class="text-capitalize text-muted smoothscroll" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category }}</a><span class="sep">, </span>
+                        {% endfor %}
+                        </span>                   
+                    </small>
+                    <small class="text-muted">
+                        {{ second_post.date | date: '%b %d, %Y' }}
+                    </small>
+                </div>
             </div>
         
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/ " title="首页">
-                    
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">首页</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-categories" title="分类">
-                    
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">分类</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-tags" title="标签">
-                    
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">标签</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/all-archives" title="归档">
-                    
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">归档</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link open-algolia-search" href="#search" title="搜索">
-                    
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">搜索</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="#about" title="关于">
-                    
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">关于</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://github.com/yiyouls" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="http://stackoverflow.com/users/10926004/yiyouls" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://twitter.com/hanhaishiyi" target="_blank" rel="noopener" title="Twitter">
-                    
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://facebook.com/yiyouls" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://plus.google.com/u/0/108244569432480563366" target="_blank" rel="noopener" title="Google Plus">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google Plus</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://www.linkedin.com/in/yiyouls" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://www.zhihu.com/people/yiyouls-66/activities" target="_blank" rel="noopener" title="知乎">
-                    
-                        <i class="sidebar-button-icon fa fa-book" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">知乎</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="https://study.163.com/provider/400000000637008/index.htm?share=2&shareId=400000000637008" target="_blank" rel="noopener" title="网易云课堂">
-                    
-                        <i class="sidebar-button-icon fa fa-school" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">网易云课堂</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="http://space.bilibili.com/275230151?" target="_blank" rel="noopener" title="bilibili">
-                    
-                        <i class="sidebar-button-icon fa fa-video" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">bilibili</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/hanhaishiyi@gmail.com" title="邮箱">
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">邮箱</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a class="sidebar-button-link " href="/atom.xml" title="RSS">
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-    </div>
-</nav>
-
-            
-            <div id="main" data-behavior="1"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/ccb21e16.html">
-                            SoPa: Bridging CNNs, RNNs, and Weighted Finite-State Machines
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-04-08T20:14:52+08:00">
-	
-		    4月 08, 2019
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>Recurrent and convolutional neural networks comprise two distinct families of models that have proven to be useful for encoding natural language utterances.</p>
-<p>In this paper we present SoPa, a new model that aims to bridge these two approaches.</p>
-<p>SoPa combines neural representation learning with weighted finite-state</p>
-<p>automata (WFSAs) to learn a soft version of traditional surface patterns.</p>
-<p>We show that SoPa is an extension of a one-layer CNN, and that such CNNs are equivalent to a restricted version of SoPa, and accordingly, to a restricted form of WFSA.</p>
-<p>Empirically, on three text classification tasks, SoPa is comparable or better than both a BiLSTM (RNN) baseline and a CNN baseline, and is particularly useful in small data settings.</p>
-                    
-                        <a href="/archives/ccb21e16.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
+        <!-- third latest post -->
+        {%- assign third_post = site.posts[2] -%}        
+        <div class="mb-3 d-flex align-items-center">                
+                {% if third_post.image %}
+                <div class="col-md-4">
+                <a href="{{site.baseurl}}{{third_post.url}}">
+                 <img class="w-100" src="{% if third_post.image contains "://" %}{{ third_post.image }}{% else %}{{site.baseurl}}/{{ third_post.image }}{% endif %}" alt="{{ third_post.title }}">
+                </a>
                 </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/24456aaf.html">
-                            Natural language processing - foundations and algorithms
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-04-02T15:45:33+08:00">
-	
-		    4月 02, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/自然语言处理/">自然语言处理</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p><img src="http://cdn.yiyouls.com/fengmian4.png" alt=""></p>
-                    
-                        <a href="/archives/24456aaf.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
+                {% endif %}                
+                <div>
+                    <h2 class="mb-2 h6 font-weight-bold">
+                    <a class="text-dark" href="{{site.baseurl}}{{third_post.url}}">{{ third_post.title }}</a>
+                    </h2>
+                    <small class="d-block text-muted">
+                        In <span class="catlist">
+                        {% for category in third_post.categories %}
+                        <a class="text-capitalize text-muted smoothscroll" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category }}</a><span class="sep">, </span>
+                        {% endfor %}
+                        </span>                   
+                    </small>
+                    <small class="text-muted">
+                        {{ third_post.date | date: '%b %d, %Y' }}
+                    </small>
                 </div>
-            
-        </div>
-        
-            <a href="/archives/24456aaf.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/unsupervised-learning.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/humin.html">
-                            胡敏读故事背雅思单词（最新版）
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-04-01T10:39:09+08:00">
-	
-		    4月 01, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/英语/">英语</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>《<em>胡敏读故事</em>记单词托福词汇》精选了托福考试中的重点词汇。词汇注解部分包括单词在文中的核心释义及单词的基本词义，紧扣考点，使考生迅速准确地掌握托福词汇.</p>
-                    
-                        <a href="/archives/humin.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/humin.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/book.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/27de7aac.html">
-                            张宇2020考研数学高等数学１８讲课程视频
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-03-27T21:39:43+08:00">
-	
-		    3月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/数学/">数学</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>张宇 考研数学想必大家都不陌生，在众多考研辅导类教程中地位突出，在这里不多议论教学风格，也不评判应试教育的好坏，为大家奉上完整视频，大家根据自己的需求选择．</p>
-                    
-                        <a href="/archives/27de7aac.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/27de7aac.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/onlinecourse.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/a2283ff6.html">
-                            使用python语言进行高阶多项式曲线拟合，numpy,tensorflow,regularization,polynomial curve fitting
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-03-26T14:06:24+08:00">
-	
-		    3月 26, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/练习/">练习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>多项式曲线拟合在机器学习中有着重要应用，是机器学习中的基础算法，也是我们在平常学习和训练中经常遇到的练习内容，我们通过这样多项式曲线拟合的训练能够认识并理解很多关于机器学习的知识．这篇博文会涵盖曲线拟合中的以下问题：</p>
-<ul>
-<li>numpy的使用</li>
-<li>matplotlib的使用</li>
-<li>tensorflow的应用</li>
-<li>regularization正则化</li>
-</ul>
-                    
-                        <a href="/archives/a2283ff6.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/a2283ff6.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/curve_fitting.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/32227.html">
-                            C++算法与数据结构视频教程
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-03-11T17:39:09+08:00">
-	
-		    3月 11, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/算法与数据结构/">算法与数据结构</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>慕课网名师liuyubobobo的算法与数据结构课－－c++算法与数据结构，精品网络课程，课程设计质量很高，个人学习后觉得受益匪浅．目前该课程已在慕课网下架，现将个人收藏版分享出来，希望大家能够一起学习．本资源仅供学习参考，严禁商用，侵权立删．</p>
-<p><img src="http://cdn.yiyouls.com/liuyubobobo.png" alt=""></p>
-                    
-                        <a href="/archives/32227.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/32227.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/onlinecourse.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/0.html">
-                            什么是卷积神经网络(convolutional neural network)深度学习？
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-27T13:36:22+08:00">
-	
-		    2月 27, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h3 id="什么是卷积神经网络-convolutional-neural-network-深度学习？"><a href="#什么是卷积神经网络-convolutional-neural-network-深度学习？" class="headerlink" title="什么是卷积神经网络(convolutional neural network)深度学习？"></a>什么是卷积神经网络(convolutional neural network)深度学习？</h3><p>这篇文章我们来了解<em>卷积神经网络</em>的概念。卷积神经网络，也称为 <em>CNN</em>或<em>ConvNet</em>，是一种人工神经网络，迄今为止最常用的计算机视觉领域神经网络。</p>
-<p>虽然图像分析是CNNS最广泛应用的领域，不过这种神经网络也可以用于其他数据分析或数据分类任务。让我们具体来看一看吧．</p>
-                    
-                        <a href="/archives/0.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/0.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/convolution.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/5110.html">
-                            机器学习中的半监督学习(semi-supervised learning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-23T21:42:21+08:00">
-	
-		    2月 23, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>这篇文章我们了解<em>半监督学习</em>的概念 。</p>
-<p>半监督学习在监督学习和无监督学习之间占据中间地位。</p>
-<p>回顾以前学过的内容， <a href="https://yiyouls.com/archives/804.html" target="_blank" rel="noopener">监督学习</a>是在训练中模型从被标记的数据集中学习。 <a href="https://yiyouls.com/archives/81bb.html" target="_blank" rel="noopener">无监督学习</a>是从未被标记的数据中学习。那半监督学习又是怎样的呢？</p>
-<p><em>半监督学习</em>将有监督和无监督学习技术结合起来，在我们使用半监督学习的情况下，我们会同时使用<em>标记</em>和<em>未标记的</em> 数据。</p>
-                    
-                        <a href="/archives/5110.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/5110.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/semi-supervise.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/81bb.html">
-                            无监督学习(unsupervised learning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-23T19:36:23+08:00">
-	
-		    2月 23, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h3 id="机器学习中的无监督学习"><a href="#机器学习中的无监督学习" class="headerlink" title="机器学习中的无监督学习"></a>机器学习中的无监督学习</h3><p>这篇文章讨论<em>无监督学习</em>的概念 。在上篇关于<a href="https://yiyouls.com/archives/804.html" target="_blank" rel="noopener">监督学习</a>的文章中，我们说监督学习使用的是有标记的数据，这是监督学习和无监督学习的显著差别．</p>
-                    
-                        <a href="/archives/81bb.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/81bb.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/unsupervised-learning.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a class="link-unstyled" href="/archives/804.html">
-                            监督学习(supervised learning)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-02-22T21:26:39+08:00">
-	
-		    2月 22, 2019
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/深度学习/">深度学习</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <h3 id="有监督的机器学习"><a href="#有监督的机器学习" class="headerlink" title="有监督的机器学习"></a>有监督的机器学习</h3><p>这篇文章中讨论有监督学习。到目前为止，在本系列中，每当我们提到模型训练过程或模型经历的学习过程时，我们实际上所指的都是有监督的学习。</p>
-                    
-                        <a href="/archives/804.html" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/archives/804.html">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://cdn.yiyouls.com/supervise.png">
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="/page/2/">
-              <span>下一页</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
-            </a>
-          </li>
-        
-        <li class="pagination-number">第 1 页 共 3 页</li>
-    </ul>
-</div>
-
-</section>
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2019 天津亦友拾光文化传播有限公司. 津ICP备18005385号
-    </span>
-</footer>
-
-            </div>
-            
-        </div>
-        
-
-
-    
-        
-    
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <img id="about-card-picture" src="http://cdn.yiyouls.com/profile.png" alt="作者的图片">
-        
-            <h4 id="about-card-name">天津亦友拾光文化传播有限公司</h4>
-        
-            <div id="about-card-bio"><p>浙江大学在读</p>
-</div>
-        
-        
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br>
-                <p>博士研究生</p>
-
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br>
-                Hangzhou,Zhejiang
+        <!-- fourth latest post -->
+        {%- assign fourth_post = site.posts[3] -%}        
+        <div class="mb-3 d-flex align-items-center">                
+                {% if fourth_post.image %}
+                <div class="col-md-4">
+                <a href="{{site.baseurl}}{{fourth_post.url}}">
+                <img class="w-100" src="{% if fourth_post.image contains "://" %}{{ fourth_post.image }}{% else %}{{site.baseurl}}/{{ fourth_post.image }}{% endif %}" alt="{{ fourth_post.title }}">
+                </a>
+                </div>
+                {% endif %}                
+                <div>
+                    <h2 class="mb-2 h6 font-weight-bold">
+                    <a class="text-dark" href="{{site.baseurl}}{{fourth_post.url}}">{{ fourth_post.title }}</a>
+                    </h2>
+                    <small class="d-block text-muted">
+                        In <span class="catlist">
+                        {% for category in fourth_post.categories %}
+                        <a class="text-capitalize text-muted smoothscroll" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category }}</a><span class="sep">, </span>
+                        {% endfor %}
+                        </span>                   
+                    </small>
+                    <small class="text-muted">
+                        {{ fourth_post.date | date: '%b %d, %Y' }}
+                    </small>
+                </div>
             </div>
         
     </div>
+    
 </div>
-
-        
-            <div id="algolia-search-modal" class="modal-container">
-    <div class="modal">
-        <div class="modal-header">
-            <span class="close-button"><i class="fa fa-times"></i></span>
-            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
-                <span class="searchby-algolia-text text-color-light text-small">by</span>
-                <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
-            </a>
-            <i class="search-icon fa fa-search"></i>
-            <form id="algolia-search-form">
-                <input type="text" id="algolia-search-input" name="search" class="form-control input--large search-input" placeholder="Search ">
-            </form>
-        </div>
-        <div class="modal-body">
-            <div class="no-result text-color-light text-center">没有找到文章</div>
-            <div class="results">
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/image_1.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/bc1e.html">
-                            <h3 class="media-heading">什么是机器学习(Machine Learning)？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月16日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程－从零开始</p>
-<p>本系列教程是为初学者定制，涵盖并解释了深度学习和人工神经网络的基本概念</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/image_2.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/f498.html">
-                            <h3 class="media-heading">什么是深度学习(Deep Learning)？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月16日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>机器学习与深度学习基础教程</p>
-<p>这篇文章将要回答什么是深度学习这个问题．</p>
-<p>整个系列课程会涵盖深度学习领域的众多主题，我们会用很多篇文章来充分解释这些课题，以及它们的应用领域和技术实现。</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/web.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/97f0.html">
-                            <h3 class="media-heading">使用hexo在Github上免费搭建功能丰富的个人博客网站</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月18日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>这个系列博文将带你一步步搭建起自己的个人博客网站，包含tranquilpeak主题模板配置，站内搜索，live2d插件，mathjax数学公式插件，＂千牛云＂云加速，＂畅言＂评论区添加，打赏设置等等高阶功能．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/Octocat.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/7cef.html">
-                            <h3 class="media-heading">如何在Github上免费开通一个Github Page作为个人主页</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月19日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>为什么要选择在Github上建站，原因很简单，它是免费的．</p>
-<p>只要你按照下面的六步走，就可以轻轻松松发布自己的网站，你不需要有任何关于编程或者网站建设的基础知识．所有的前提只是，你要有一个github账号．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/hexologo.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/b5e2.html">
-                            <h3 class="media-heading">11大最常用静态网站建站工具，你用过几个？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月19日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>在进行下一步操作之前，你首先要明白，你通过我们上篇博文所介绍的方式建立的网站，是一种静态网站，这个是最近特别流行的静态网站搭建博客的技术，非常适合让站长专注于内容创作而非网站本身的维护．</p>
-<p>为什么不用动态网站例如大名鼎鼎的wordpress呢？</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/anns.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/7770.html">
-                            <h3 class="media-heading">什么是人工神经网络ANNs?</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月25日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>什么是人工神经网络(artificial neural network)?</p>
-<p>在上一篇文章中我们把深度学习定义为机器学习的子领域，深度学习所用到的算法是受大脑神经网络的结构和功能的启发．因为这个浅显的的原因，深度学习中使用的模型被称为人工神经网络（ANN）。</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/ceng.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/da21.html">
-                            <h3 class="media-heading">如何理解神经网络中层(layer)的概念？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月25日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>如何理解神经网络中层(layer)的概念?</p>
-<p>我们在之前的文章中认识了只有三个层的神经网络，但在很多时候我们有多个隐藏层，这篇文章探讨如何深入理解神经网络中层的概念，并提供一个多层神经网络的构建方法．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/function.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/10fe.html">
-                            <h3 class="media-heading">如何理解神经网络中的激活函数(ativation functions)?</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月26日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>神经网络中的激活函数</p>
-<p>这篇文章向大家解释激活函数到底是什么，以及如何在神经网络中使用激活函数．我会向大家介绍几种常见的激活函数，向大家展示这些激活函数如何在Keras中以代码的形式呈现．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/sgd.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/4c0a.html">
-                            <h3 class="media-heading">如何训练(train)人工神经网络？</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月26日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><h4 id="神经网络的训练"><a href="#神经网络的训练" class="headerlink" title="神经网络的训练"></a>神经网络的训练</h4><p>这篇文章带大家学习如何训练一个人工神经网络．之前的文章中我们学习了如何构建一个简单的人工神经网络，当我们把一个神经网络配置好之后，下一步就是来训练它了．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-left">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
-                            <img class="media-image" src="http://cdn.yiyouls.com/learn.png" width="90" height="90">
-                        </a>
-                    </div>
-                    
-                    <div class="media-body">
-                        <a class="link-unstyled" href="http://yoursite.com/archives/b5f9.html">
-                            <h3 class="media-heading">人工神经网络是如何学习(learn)的?</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    2019年1月27日
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"><p>神经网络的学习过程</p>
-<p>这篇文章我们来探讨人工神经网络是怎样学习的．</p>
-<p>本篇内容涵盖损失loss，梯度gradient，学习率lerning rate，epoch，verbose，batch批处理等概念．</p></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
+    
+<!-- Sticky - add sticky tag to the post you want to highlight here - tags: [sticky] -->
+{% for post in site.posts %} 
+{% if post.tags contains "sticky" %}
+<div class="jumbotron jumbotron-fluid jumbotron-home pt-0 pb-0 mt-3 mb-2rem bg-lightblue position-relative">
+    <div class="pl-4 pr-0 h-100 tofront">
+        <div class="row justify-content-between">
+            <div class="col-md-6 pt-6 pb-6 pr-lg-4 align-self-center">
+                <h1 class="mb-3">{{post.title}}</h1>
+                <p class="mb-3 lead">
+                    {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+                </p>
+                <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
+            </div>
+            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url({{site.baseurl}}/{{ post.image }});">	
             </div>
         </div>
-        <div class="modal-footer">
-            <p class="results-count text-medium" data-message-zero="没有找到文章" data-message-one="找到 1 篇文章" data-message-other="找到 {n} 篇文章">
-                找到 30 篇文章
-            </p>
-        </div>
     </div>
+</div> 
+{% endif %}
+{% endfor %}
+
+
+    
+
+
+{% endif %} <!--endif page url is / -->
+    
+
+
+<!-- Now the rest of the posts with the usual loop but with an offset:4 on the first page so we can skeep the first 4 posts displayed above -->
+    
+<div class="row mt-3">
+   
+    <div class="col-md-8 main-loop">
+        
+        <h4 class="font-weight-bold spanborder"><span>All Stories</span></h4>
+        
+
+        {% for post in paginator.posts %}
+        
+            {% include main-loop-card.html %}
+        
+        {% endfor %}
+        
+        <div class="mt-5">
+         <!-- Pagination links -->
+            {% if paginator.total_pages > 1 %}
+            <ul class="pagination"> 
+              {% if paginator.previous_page %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a></li>
+              {% else %}
+                <li class="page-item disabled"><span class="prev page-link">&laquo;</span></li>
+              {% endif %}
+
+              {% for page in (1..paginator.total_pages) %}
+                {% if page == paginator.page %}
+                <li class="page-item disabled"><span class="webjeda page-link">{{ page }}</span></li>
+                {% elsif page == 1 %}
+                <li class="page-item"><a class="page-link" href="{{site.baseurl}}/">{{ page }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
+                {% endif %}
+              {% endfor %}
+
+              {% if paginator.next_page %}
+                <li class="page-item"><a class="page-link" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a></li>
+              {% else %}
+                <li class="page-item disabled"><span class="next page-link">&raquo;</span></li>
+              {% endif %}
+            </ul>
+            {% endif %}      
+        </div>
+        
+    </div>
+    
+    <div class="col-md-4">
+        {% include sidebar-featured.html %}    
+    </div>
+    
 </div>
 
-        
-        
-<div id="cover" style="background-image:url('http://cdn.yiyouls.com/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
-<!--SCRIPTS END-->
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
-    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script>
-        var algoliaClient = algoliasearch('JRXR2OL9UV', '2f9d9502c1e5ad12ac19a2180d9ac94d');
-        var algoliaIndex = algoliaClient.initIndex('my-hexo-blog');
-    </script>
-
-
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
-</html>
+</div>
